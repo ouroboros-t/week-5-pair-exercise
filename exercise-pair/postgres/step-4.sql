@@ -30,9 +30,19 @@ WHERE campground.name = 'Blackwoods';
     Cuyahoga Valley	The Unnamed Primitive Campsites	5
   -------------------------------------------------
 */
+SELECT park.name AS park_name, campground.name AS campground_name, COUNT(site.site_number) AS number_of_sites FROM site
+JOIN campground ON site.campground_id = campground.campground_id
+JOIN park ON campground.park_id = park.park_id
+GROUP BY campground_name, park_name
+ORDER BY park_name;
 
 
 -- select site number, reservation name, reservation from and to date ordered by reservation from date
+SELECT site.site_number, reservation.name, reservation.from_date, reservation.to_date 
+FROM reservation 
+JOIN site ON reservation.reservation_id = site.site_id 
+ORDER BY reservation.from_date;
+
 
 
 
@@ -48,6 +58,13 @@ WHERE campground.name = 'Blackwoods';
     Juniper Group Site	4
   -------------------------------------------------
 */
+
+SELECT campground.name, COUNT(reservation.reservation_id) AS num_of_reservations 
+FROM reservation 
+JOIN site ON reservation.site_id = site.site_id 
+JOIN campground ON site.campground_id = campground.campground_id
+GROUP BY campground.name
+ORDER BY num_of_reservations DESC;
 
 
 
