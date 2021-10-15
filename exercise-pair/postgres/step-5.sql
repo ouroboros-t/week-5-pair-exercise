@@ -48,6 +48,11 @@ INSERT INTO campground(park_id, name, open_from_mm, open_to_mm, daily_fee) VALUE
 
 */
 
+INSERT INTO site(site_number, campground_id) VALUES(623, 8); 
+INSERT INTO site(site_number, campground_id) VALUES(624, 8);
+INSERT INTO site(site_number, campground_id) VALUES(625, 8);
+
+
 
 /*
  STEP FIVE: Insert 3 reservations, 1 for each site with the following data:
