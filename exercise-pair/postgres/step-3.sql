@@ -2,26 +2,36 @@
 -----------------------------------------------
 
 -- select name and daily fee of all campgrounds
+SELECT campground.name, campground.daily_fee FROM campground;
 
 -- select name and daily fee of all campgrounds ordered by campground name
+SELECT campground.name, campground.daily_fee FROM campground ORDER BY campground.name;
 
 -- select name, open from month, open to month, and daily fee of the campgrounds where daily fee is less than $100
+SELECT campground.name, campground.open_from_mm, campground.open_to_mm, campground.daily_fee FROM campground WHERE campground.daily_fee < '$100';
 
 -- select name and daily fee of the campgrounds where the campground is open all year long
+SELECT campground.name, campground.daily_fee FROM campground WHERE campground.open_from_mm = '01' AND campground.open_to_mm = '12';
+
 
 
 -- PARK TABLE
 -----------------------------------------------
 
 -- select name and description of all parks order by established date in descending order
+SELECT park.name, park.description FROM park ORDER BY park.establish_date DESC;  
 
 -- select name and description of all parks in Ohio
+SELECT park.name, park.description FROM park WHERE park.location = 'Ohio';
 
 -- select name and description of all parks NOT in Ohio
+SELECT park.name, park.description FROM park WHERE park.location <> 'Ohio';
 
 -- select the total number of visitors for all parks
+SELECT SUM(visitors) AS total_visitors FROM park;
 
 -- select the average number of visitors for all parks
+SELECT AVG(visitors) AS average_visitors FROM park;
 
 
 -- SITE TABLE
