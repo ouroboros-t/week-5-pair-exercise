@@ -38,20 +38,35 @@ SELECT AVG(visitors) AS average_visitors FROM park;
 -----------------------------------------------
 
 -- select all columns from site where utilities is true and order by max RV length with the largest coming first
+SELECT site.site_id, site.campground_id, site.site_number, site.max_occupancy, site.accessible, site.max_rv_length, site.utilities
+FROM site
+WHERE site.utilities = true
+ORDER BY max_rv_length DESC;
 
 -- select total number of sites that have utilities hook up
+SELECT COUNT(site.site_id) AS total_number_of_utility_sites FROM site WHERE site.utilities = true;
 
 
 -- RESERVATION TABLE
 -----------------------------------------------
 
--- select reservation id, site id, name, from date, to date of the reservations where the checkin date is between the first and last day of the current month (hard coded month is ok)
+-- select reservation id, site id, name, from date, to date of the reservations where the checkin date is 
+-- between the first and last day of the current month (hard coded month is ok)
+SELECT reservation.reservation_id, reservation.site_id, reservation.name, reservation.from_date, reservation.to_date
+FROM reservation
+WHERE reservation.from_date BETWEEN '2021-10-01' AND '2021-10-31';
 
 -- select all columns from reservation where name includes 'Reservation'
+SELECT reservation.name FROM reservation WHERE reservation.name LIKE '%Reservation%';
 
 -- select the total number of reservations in the reservation table
+SELECT COUNT(reservation.reservation_id) AS total_reservations FROM reservation;
 
 -- select reservation id, site id, name of the reservations where site id is in the list 9, 20, 24, 45, 46
+SELECT reservation.reservation_id, reservation.site_id, reservation.name FROM reservation WHERE reservation.site_id IN (9, 20, 24, 45, 46);
 
 -- select the date and number of reservations for each date orderd by from_date in ascending order
-
+SELECT reservation.from_date, COUNT(reservation.reservation_id) 
+FROM reservation 
+GROUP BY reservation.from_date 
+ORDER BY reservation.from_date ASC;
